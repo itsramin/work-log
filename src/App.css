@@ -1,0 +1,59 @@
+.App {
+  background-color: #fff;
+  height: 100vh;
+}
+main {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  background-color: #1e7ebe;
+  color: #fff;
+  padding: 1rem 3rem;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.form {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.form-actions {
+  display: flex;
+  width: 40px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.table {
+  margin-top: 3rem;
+}
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.item-actions {
+  display: flex;
+  width: 40px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  main {
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 330px) {
+  main {
+    padding: 0 8px;
+  }
+}

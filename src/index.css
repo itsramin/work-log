@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.95rem;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+/* ::-webkit-scrollbar-track {
+  background: white;
+} */
+::-webkit-scrollbar-thumb {
+  background-color: #dfdfdf;
+  border-radius: 60px;
+  border: 7px solid white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+*:focus-visible {
+  outline: none;
+}
