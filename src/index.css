@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,9 +9,9 @@ body {
 }
 
 input {
-  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 0.95rem;
+  font-size: 100%;
 }
 ::-webkit-scrollbar {
   width: 20px;
@@ -26,8 +26,8 @@ input {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: Vazirmatn, source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
 }
 * {
   margin: 0;
