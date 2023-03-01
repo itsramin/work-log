@@ -4,6 +4,8 @@ const initialState = {
   list: [],
   editId: null,
   deleteId: null,
+  dateFilter: null,
+  statusFilter: null,
 };
 
 const dataSlice = createSlice({
@@ -36,6 +38,18 @@ const dataSlice = createSlice({
     },
     clearDeleteId(state) {
       state.deleteId = null;
+    },
+    setDateFilter(state, action) {
+      state.dateFilter = action.payload;
+    },
+    clearDateFilter(state) {
+      state.dateFilter = null;
+    },
+    setStatusFilter(state, action) {
+      state.statusFilter = action.payload;
+    },
+    clearStatusFilter(state) {
+      state.statusFilter = null;
     },
   },
 });
