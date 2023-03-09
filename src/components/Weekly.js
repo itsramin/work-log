@@ -23,7 +23,7 @@ const Weekly = () => {
   };
 
   useEffect(() => {
-    const todayWeekday = new Date().getDay() + 1;
+    const todayWeekday = new Date().getDay();
     const sunday = new Date(
       new Date().setDate(new Date().getDate() - todayWeekday)
     );

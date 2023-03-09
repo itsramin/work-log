@@ -7,7 +7,7 @@ const initialState = {
   date1Filter: null,
   date2Filter: null,
   statusFilter: null,
-  sort: null,
+  sort: "Az",
 };
 
 const dataSlice = createSlice({
