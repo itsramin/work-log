@@ -88,7 +88,7 @@ const Weekly = () => {
       <div className="weekSumContainer">
         <div className="weekSum">
           Sum {Math.floor(sumWork / 60)}:
-          {sumWork - Math.floor(sumWork / 60) * 60}
+          {(sumWork - Math.floor(sumWork / 60) * 60).toString().padStart(2, 0)}
         </div>
       </div>
     </div>
