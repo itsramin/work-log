@@ -16,14 +16,13 @@ const DataForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const dateWithSec = selectedDate + ":00";
 
     const editData = {
       id: target.id,
       date: selectedDate.slice(0, 10),
       time: selectedDate.slice(11, 19),
-      timeStamp:
-        +new Date(selectedDate.slice(0, 10)) +
-        +new Date(selectedDate.slice(11, 19)),
+      timeStamp: +new Date(dateWithSec),
       status: selectedStatus,
     };
 

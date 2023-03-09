@@ -4,14 +4,16 @@ import "./App.css";
 import Btn from "./components/Btn";
 import DataForm from "./components/DataForm";
 import DeleteModal from "./components/DeleteModal";
-import FilterLogs from "./components/FilterLogs";
 import LogList from "./components/LogList";
+import Weekly from "./components/Weekly";
 
 function App() {
   const dataSlice = useSelector((state) => state.data);
-  const [showFilter, setShowFilter] = useState(false);
-  const filterHandler = () => {
-    setShowFilter((prev) => !prev);
+
+  const [tabNum, setTabNum] = useState(0);
+
+  const tabChangeHandler = (num) => {
+    setTabNum(num);
   };
 
   return (
@@ -24,14 +26,23 @@ function App() {
           <Btn title="Out" status="out" />
         </div>
 
-        <div className="options">
-          <span className="filter-btn" onClick={filterHandler}>
-            Filter
-          </span>
+        <div className="tabs">
+          <div
+            className={tabNum === 0 ? "tab tab-selected" : "tab"}
+            onClick={tabChangeHandler.bind(null, 0)}
+          >
+            Weekly
+          </div>
+          <div
+            className={tabNum === 1 ? "tab tab-selected" : "tab"}
+            onClick={tabChangeHandler.bind(null, 1)}
+          >
+            All
+          </div>
         </div>
 
-        {showFilter && <FilterLogs />}
-        <LogList />
+        {tabNum === 0 && <Weekly />}
+        {tabNum === 1 && <LogList />}
       </main>
     </div>
   );
