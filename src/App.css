@@ -173,10 +173,6 @@ main {
   margin-left: 10px;
 }
 .tabs {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  justify-content: center;
   margin: 2rem 0;
 }
 .tab {
@@ -234,4 +230,7 @@ main {
   font-weight: bold;
   padding: 7px 15px;
   border-top: 2px solid #ccc;
+}
+.import-btn-hidden {
+  display: none;
 }

@@ -31,6 +31,9 @@ const dataSlice = createSlice({
     import(state, action) {
       state.list = action.payload;
     },
+    deleteAll(state) {
+      state.list = [];
+    },
 
     setEditId(state, action) {
       state.editId = action.payload.id;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dataActions } from "../store/dataSlice";
 
@@ -8,6 +8,9 @@ const FilterLogs = () => {
   const [filteredStatus, setFilteredStatus] = useState("");
   const dispatch = useDispatch();
   const dataSlice = useSelector((state) => state.data);
+  useEffect(() => {
+    resetHandler();
+  }, []);
 
   const date1ChangeHandler = (e) => {
     setFilterDate1(e.target.value);

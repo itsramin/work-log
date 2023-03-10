@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { dataActions } from "../store/dataSlice";
@@ -11,11 +12,11 @@ const Btn = ({ title, status }) => {
       .toString()
       .padStart(2, 0)}-${now.getDate()}`;
 
-    const target = dataSlice.list.find(
-      (log) => log.date === formattedDate && log.status === status
-    );
+    // const target = dataSlice.list.find(
+    //   (log) => log.date === formattedDate && log.status === status
+    // );
 
-    if (target) return toast.error(`Status "${status}" is exist for today.`);
+    // if (target) return toast.error(`Status "${status}" is exist for today.`);
 
     const newData = {
       id: +now,
@@ -27,10 +28,15 @@ const Btn = ({ title, status }) => {
     dispatch(dataActions.add(newData));
   };
   return (
-    <div onClick={btnHandler} className="btn">
+    <Button onClick={btnHandler} variant="contained" size="large">
       {title}
-    </div>
+    </Button>
   );
 };
 
 export default Btn;
+// return (
+//   <div onClick={btnHandler} className="btn">
+//     {title}
+//   </div>
+// );

@@ -8,14 +8,20 @@ import LogList from "./components/LogList";
 import Weekly from "./components/Weekly";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ImportExport from "./components/ImportExport";
+import Settings from "./components/Settings";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 function App() {
   const dataSlice = useSelector((state) => state.data);
 
   const [tabNum, setTabNum] = useState(0);
 
-  const tabChangeHandler = (num) => {
+  const tabChangeHandler = (e, num) => {
     setTabNum(num);
   };
 
@@ -41,30 +47,20 @@ function App() {
           <Btn title="Out" status="out" />
         </div>
 
-        <div className="tabs">
-          <div
-            className={tabNum === 0 ? "tab tab-selected" : "tab"}
-            onClick={tabChangeHandler.bind(null, 0)}
-          >
-            Weekly
-          </div>
-          <div
-            className={tabNum === 1 ? "tab tab-selected" : "tab"}
-            onClick={tabChangeHandler.bind(null, 1)}
-          >
-            All
-          </div>
-          <div
-            className={tabNum === 2 ? "tab tab-selected" : "tab"}
-            onClick={tabChangeHandler.bind(null, 2)}
-          >
-            Settings
-          </div>
-        </div>
+        <Tabs
+          value={tabNum}
+          onChange={tabChangeHandler}
+          centered
+          className="tabs"
+        >
+          <Tab label="Weekly" value={0} />
+          <Tab label="All" value={1} />
+          <Tab label="Settings" value={2} />
+        </Tabs>
 
         {tabNum === 0 && <Weekly />}
         {tabNum === 1 && <LogList />}
-        {tabNum === 2 && <ImportExport />}
+        {tabNum === 2 && <Settings />}
       </main>
     </div>
   );
