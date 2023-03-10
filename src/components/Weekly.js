@@ -17,20 +17,21 @@ const Weekly = () => {
   const [weekArr, setWeekArr] = useState(initArr);
   const [sumWork, setSumWork] = useState(0);
 
-  const futureDate = (sunday, days) => {
-    const thisSunday = +new Date(sunday);
-    return new Date(thisSunday + days * 24 * 60 * 60 * 1000);
+  const futureDate = (saturday, days) => {
+    const thisSaturday = +new Date(saturday);
+    return new Date(thisSaturday + days * 24 * 60 * 60 * 1000);
   };
 
   useEffect(() => {
     const todayWeekday = new Date().getDay();
-    const sunday = new Date(
-      new Date().setDate(new Date().getDate() - todayWeekday)
+    const saturday = new Date(
+      new Date().setDate(new Date().getDate() - todayWeekday - 1)
     );
+    console.log(saturday);
 
     const newArr = [...weekArr];
     newArr.forEach((day, i) => {
-      const calcDate = futureDate(sunday, i).toISOString().slice(0, 10);
+      const calcDate = futureDate(saturday, i).toISOString().slice(0, 10);
       day.date = calcDate;
 
       const targetIn = dataSlice.list.find(
