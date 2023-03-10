@@ -28,6 +28,9 @@ const dataSlice = createSlice({
       state.list[index] = action.payload;
       state.editId = null;
     },
+    import(state, action) {
+      state.list = action.payload;
+    },
 
     setEditId(state, action) {
       state.editId = action.payload.id;

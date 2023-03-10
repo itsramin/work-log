@@ -232,7 +232,6 @@ main {
 .weekSum {
   text-align: right;
   font-weight: bold;
-  width: 105px;
   padding: 7px 15px;
   border-top: 2px solid #ccc;
 }

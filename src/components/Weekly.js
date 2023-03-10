@@ -27,7 +27,6 @@ const Weekly = () => {
     const saturday = new Date(
       new Date().setDate(new Date().getDate() - todayWeekday - 1)
     );
-    console.log(saturday);
 
     const newArr = [...weekArr];
     newArr.forEach((day, i) => {

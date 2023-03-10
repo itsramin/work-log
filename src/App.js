@@ -6,6 +6,9 @@ import DataForm from "./components/DataForm";
 import DeleteModal from "./components/DeleteModal";
 import LogList from "./components/LogList";
 import Weekly from "./components/Weekly";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ImportExport from "./components/ImportExport";
 
 function App() {
   const dataSlice = useSelector((state) => state.data);
@@ -18,6 +21,18 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {dataSlice.editId && <DataForm />}
       {dataSlice.deleteId && <DeleteModal />}
       <main>
@@ -39,10 +54,17 @@ function App() {
           >
             All
           </div>
+          <div
+            className={tabNum === 2 ? "tab tab-selected" : "tab"}
+            onClick={tabChangeHandler.bind(null, 2)}
+          >
+            Settings
+          </div>
         </div>
 
         {tabNum === 0 && <Weekly />}
         {tabNum === 1 && <LogList />}
+        {tabNum === 2 && <ImportExport />}
       </main>
     </div>
   );
