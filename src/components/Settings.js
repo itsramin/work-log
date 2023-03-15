@@ -19,10 +19,21 @@ const Settings = () => {
   const dispatch = useDispatch();
 
   const generateCSV = () => {
-    const worksheet = XLSX.utils.json_to_sheet(dataSlice.list);
+    const exportedArr = dataSlice.list.map((item) => {
+      return { date: item.date, time: item.time, status: item.status };
+    });
+    const worksheet = XLSX.utils.json_to_sheet(exportedArr);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Dates");
-    XLSX.writeFile(workbook, "Logs.xlsx", { compression: true });
+    const fileName = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date());
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "logs");
+    XLSX.writeFile(workbook, `${fileName}.xlsx`, { compression: true });
   };
   const readUploadFile = (e) => {
     e.preventDefault();
@@ -37,19 +48,35 @@ const Settings = () => {
 
         if (
           json[0].hasOwnProperty("date") &&
-          json[0].hasOwnProperty("id") &&
           json[0].hasOwnProperty("time") &&
-          json[0].hasOwnProperty("timeStamp") &&
           json[0].hasOwnProperty("status") &&
           json.length > 0
         ) {
+          const dataArr = json.map((row, i) => {
+            const formattedTime =
+              row.time.length > 5 ? row.time : row.time + ":00";
+            const hourToSec = formattedTime.split(":")[0] * 60 * 60;
+            const minToSec = formattedTime.split(":")[1] * 60;
+            const sec = formattedTime.split(":")[2] * 60;
+            const timeStamp =
+              +new Date(row.date) + (hourToSec + minToSec + sec) * 1000;
+            return {
+              date: row.date,
+              id: `${+new Date()}-${i}`,
+              time: formattedTime,
+              status: row.status,
+              timeStamp,
+            };
+          });
+
           toast.success("Import successfully!");
-          dispatch(dataActions.import(json));
+          dispatch(dataActions.import(dataArr));
         } else {
           toast.error("File is incorrect!");
         }
       };
       reader.readAsArrayBuffer(e.target.files[0]);
+      e.target.value = null;
     }
   };
 
