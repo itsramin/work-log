@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { calcWorkTime, convert2Date } from "../util/helper";
 
 const Weekly = () => {
   const dataSlice = useSelector((state) => state.data);
@@ -24,13 +25,16 @@ const Weekly = () => {
 
   useEffect(() => {
     const todayWeekday = new Date().getDay();
-    const saturday = new Date(
-      new Date().setDate(new Date().getDate() - todayWeekday - 1)
-    );
+
+    const saturday =
+      todayWeekday === 6
+        ? new Date()
+        : new Date(new Date().setDate(new Date().getDate() - todayWeekday - 1));
 
     const newArr = [...weekArr];
     newArr.forEach((day, i) => {
-      const calcDate = futureDate(saturday, i).toISOString().slice(0, 10);
+      const calcDate = convert2Date(futureDate(saturday, i));
+
       day.date = calcDate;
 
       const targetIn = dataSlice.list.find(
@@ -42,17 +46,7 @@ const Weekly = () => {
       );
       day.out = targetout ? targetout.time : "";
       day.workTime =
-        targetout &&
-        targetIn &&
-        new Date(
-          (+targetout.time.slice(0, 2) * 60 +
-            +targetout.time.slice(3, 5) -
-            (+targetIn.time.slice(0, 2) * 60 + +targetIn.time.slice(3, 5))) *
-            60 *
-            1000
-        )
-          .toISOString()
-          .slice(11, 16);
+        targetout && targetIn && calcWorkTime(targetIn.time, targetout.time);
     });
 
     const newSum = newArr.reduce((sum, cur) => {

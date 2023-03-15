@@ -55,9 +55,9 @@ const Settings = () => {
           const dataArr = json.map((row, i) => {
             const formattedTime =
               row.time.length > 5 ? row.time : row.time + ":00";
-            const hourToSec = formattedTime.split(":")[0] * 60 * 60;
-            const minToSec = formattedTime.split(":")[1] * 60;
-            const sec = formattedTime.split(":")[2] * 60;
+            const hourToSec = +formattedTime.split(":")[0] * 60 * 60;
+            const minToSec = +formattedTime.split(":")[1] * 60;
+            const sec = +formattedTime.split(":")[2];
             const timeStamp =
               +new Date(row.date) + (hourToSec + minToSec + sec) * 1000;
             return {

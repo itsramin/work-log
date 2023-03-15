@@ -21,7 +21,7 @@ const DataForm = () => {
     const editData = {
       id: target.id,
       date: selectedDate.slice(0, 10),
-      time: selectedDate.slice(11, 19),
+      time: dateWithSec.slice(11, 19),
       timeStamp: +new Date(dateWithSec),
       status: selectedStatus,
     };
