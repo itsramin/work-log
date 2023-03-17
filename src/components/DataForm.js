@@ -9,7 +9,9 @@ const DataForm = () => {
   const target = dataSlice.list.find((item) => item.id === dataSlice.editId);
 
   const [selectedDate, setSelectedDate] = useState(
-    new Date(target.timeStamp + 3.5 * 60 * 60 * 1000).toISOString().slice(0, 16)
+    new Date(target.timeStamp - new Date().getTimezoneOffset() * 60 * 1000)
+      .toISOString()
+      .slice(0, 16)
   );
   const [selectedStatus, setSelectedStatus] = useState(target.status);
   const dispatch = useDispatch();
@@ -20,8 +22,6 @@ const DataForm = () => {
 
     const editData = {
       id: target.id,
-      date: selectedDate.slice(0, 10),
-      time: dateWithSec.slice(11, 19),
       timeStamp: +new Date(dateWithSec),
       status: selectedStatus,
     };

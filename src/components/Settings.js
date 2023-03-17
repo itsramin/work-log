@@ -13,14 +13,19 @@ import Divider from "@mui/material/Divider";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { convert2Date, convert2Time } from "../util/helper";
 
 const Settings = () => {
   const dataSlice = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
-  const generateCSV = () => {
+  const exportFile = () => {
     const exportedArr = dataSlice.list.map((item) => {
-      return { date: item.date, time: item.time, status: item.status };
+      return {
+        date: convert2Date(item.timeStamp),
+        time: convert2Time(item.timeStamp),
+        status: item.status,
+      };
     });
     const worksheet = XLSX.utils.json_to_sheet(exportedArr);
     const workbook = XLSX.utils.book_new();
@@ -35,7 +40,7 @@ const Settings = () => {
     XLSX.utils.book_append_sheet(workbook, worksheet, "logs");
     XLSX.writeFile(workbook, `${fileName}.xlsx`, { compression: true });
   };
-  const readUploadFile = (e) => {
+  const importFile = (e) => {
     e.preventDefault();
     if (e.target.files) {
       const reader = new FileReader();
@@ -61,9 +66,7 @@ const Settings = () => {
             const timeStamp =
               +new Date(row.date) + (hourToSec + minToSec + sec) * 1000;
             return {
-              date: row.date,
               id: `${+new Date()}-${i}`,
-              time: formattedTime,
               status: row.status,
               timeStamp,
             };
@@ -96,12 +99,12 @@ const Settings = () => {
               primary="Import logs"
               secondary="Import logs from .xlsx file"
             />
-            <input hidden type="file" onChange={readUploadFile} />
+            <input hidden type="file" onChange={importFile} />
           </ListItemButton>
         </ListItem>
         <Divider />
         <ListItem disablePadding>
-          <ListItemButton onClick={generateCSV}>
+          <ListItemButton onClick={exportFile}>
             <ListItemIcon>
               <FileDownloadIcon />
             </ListItemIcon>
@@ -133,13 +136,13 @@ const Settings = () => {
     //   justifyContent="center"
     //   spacing={2}
     // >
-    //   <Button variant="contained" onClick={generateCSV}>
+    //   <Button variant="contained" onClick={exportFile}>
     //     Export logs
     //   </Button>
 
     //   <Button variant="contained" component="label">
     //     Import logs
-    //     <input hidden type="file" onChange={readUploadFile} />
+    //     <input hidden type="file" onChange={importFile} />
     //   </Button>
     // </Stack>
   );

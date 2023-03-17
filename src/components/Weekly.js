@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { calcWorkTime, convert2Date } from "../util/helper";
+import { calcWorkTime, convert2Date, convert2Time } from "../util/helper";
 
 const Weekly = () => {
   const dataSlice = useSelector((state) => state.data);
@@ -38,15 +38,22 @@ const Weekly = () => {
       day.date = calcDate;
 
       const targetIn = dataSlice.list.find(
-        (log) => log.date === calcDate && log.status === "in"
+        (log) => convert2Date(log.timeStamp) === calcDate && log.status === "in"
       );
-      day.in = targetIn ? targetIn.time : "";
+
+      day.in = targetIn ? convert2Time(targetIn.timeStamp) : "";
+
       const targetout = dataSlice.list.find(
-        (log) => log.date === calcDate && log.status === "out"
+        (log) =>
+          convert2Date(log.timeStamp) === calcDate && log.status === "out"
       );
-      day.out = targetout ? targetout.time : "";
+      day.out = targetout ? convert2Time(targetout.timeStamp) : "";
       day.workTime =
-        targetout && targetIn && calcWorkTime(targetIn.time, targetout.time);
+        targetout &&
+        targetIn &&
+        calcWorkTime(targetIn.timeStamp, targetout.timeStamp);
+      // console.log(targetout?.timeStamp);
+      // console.log(targetIn?.timeStamp);
     });
 
     const newSum = newArr.reduce((sum, cur) => {
@@ -72,7 +79,7 @@ const Weekly = () => {
         return (
           <div key={day.weekName} className="weekItem">
             <div className="weekCol">{day.weekName}</div>
-            <div className="weekCol">{day.date?.slice(2, 10)}</div>
+            <div className="weekCol">{day.date}</div>
             <div className="weekCol">{day.in?.slice(0, 5)}</div>
             <div className="weekCol">{day.out?.slice(0, 5)}</div>
             <div className="weekCol">{day.out && day.workTime}</div>
