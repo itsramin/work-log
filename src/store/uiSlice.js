@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  language: "En",
-  langOption: "en-US",
+  language: "Fa",
+  langOption: "fa-IR",
 };
 
 const uiSlice = createSlice({
