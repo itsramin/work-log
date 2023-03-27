@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   list: [],
   editId: null,
-  deleteId: null,
+  deleteIds: null,
   date1Filter: null,
   date2Filter: null,
   statusFilter: null,
@@ -18,8 +18,10 @@ const dataSlice = createSlice({
       state.list.unshift(action.payload);
     },
     delete(state, action) {
-      state.list = state.list.filter((item) => item.id !== action.payload.id);
-      state.deleteId = null;
+      state.list = state.list.filter(
+        (item) => !action.payload.includes(item.id)
+      );
+      state.deleteIds = null;
     },
     edit(state, action) {
       const index = state.list.findIndex(
@@ -29,7 +31,7 @@ const dataSlice = createSlice({
       state.editId = null;
     },
     import(state, action) {
-      state.list = action.payload;
+      state.list = [...state.list, ...action.payload];
     },
     deleteAll(state) {
       state.list = [];
@@ -41,11 +43,11 @@ const dataSlice = createSlice({
     clearEditId(state) {
       state.editId = null;
     },
-    setDeleteId(state, action) {
-      state.deleteId = action.payload.id;
+    setDeleteIds(state, action) {
+      state.deleteIds = action.payload;
     },
-    clearDeleteId(state) {
-      state.deleteId = null;
+    clearDeleteIds(state) {
+      state.deleteIds = null;
     },
     setDate1Filter(state, action) {
       state.date1Filter = action.payload;

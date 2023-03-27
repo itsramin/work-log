@@ -94,6 +94,43 @@ main {
 .item-status {
   width: 40px;
 }
+.item-weekday {
+  width: 40px;
+}
+
+.list-header {
+  height: 40px;
+}
+.list-lables {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px 0;
+}
+.list-lables div {
+  text-align: center;
+}
+.list-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.list-action {
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee;
+  padding: 3px 10px;
+  border-radius: 5px;
+}
+.list-action-label {
+  color: #888;
+}
+.list-icon {
+  cursor: pointer;
+  margin-right: 5px;
+}
 .green {
   background-color: #ebffee;
 }

@@ -1,4 +1,3 @@
-import { Button, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx/xlsx.mjs";
@@ -13,10 +12,14 @@ import Divider from "@mui/material/Divider";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import LanguageIcon from "@mui/icons-material/Language";
 import { convert2Date, convert2Time } from "../util/helper";
+import Switch from "@mui/material/Switch";
+import { uiActions } from "../store/uiSlice";
 
 const Settings = () => {
   const dataSlice = useSelector((state) => state.data);
+  const uiSlice = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
   const exportFile = () => {
@@ -87,9 +90,44 @@ const Settings = () => {
     dispatch(dataActions.deleteAll());
     toast.success("All logs deleted!");
   };
+  const handleToggle = () => {
+    const isEn = uiSlice.language === "En";
+    dispatch(uiActions.setLang(isEn ? "Fa" : "En"));
+    // const currentIndex = checked.indexOf(value);
+    // const newChecked = [...checked];
+
+    // if (currentIndex === -1) {
+    //   newChecked.push(value);
+    // } else {
+    //   newChecked.splice(currentIndex, 1);
+    // }
+
+    // setChecked(newChecked);
+  };
   return (
     <nav aria-label="main mailbox folders">
       <List>
+        <ListItem disablePadding>
+          <ListItemButton component="label">
+            <ListItemIcon>
+              <LanguageIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Dates language"
+              secondary="On is English, off is Farsi"
+              id="switch-language"
+            />
+            <Switch
+              edge="end"
+              onChange={handleToggle}
+              checked={uiSlice.language === "En"}
+              inputProps={{
+                "aria-labelledby": "switch-language",
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
+        <Divider />
         <ListItem disablePadding>
           <ListItemButton component="label">
             <ListItemIcon>

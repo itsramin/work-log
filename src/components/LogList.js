@@ -1,13 +1,32 @@
+import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { dataActions } from "../store/dataSlice";
 import DataItem from "./DataItem";
 import FilterLogs from "./FilterLogs";
-///
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 const LogList = () => {
   const dataSlice = useSelector((state) => state.data);
+  const dispatch = useDispatch();
 
   const [loadedLogs, setLoadedLogs] = useState([]);
+  const [selectList, setSelectedList] = useState([]);
+
+  const checkHandler = (newId) => {
+    if (selectList.includes(newId)) {
+      setSelectedList((prev) => prev.filter((item) => item !== newId));
+    } else {
+      setSelectedList((prev) => [...prev, newId]);
+    }
+  };
+  const deleteHandler = () => {
+    dispatch(dataActions.setDeleteIds(selectList));
+  };
+  const editHandler = () => {
+    dispatch(dataActions.setEditId({ id: selectList[0] }));
+  };
 
   useEffect(() => {
     setLoadedLogs(dataSlice.list);
@@ -46,12 +65,55 @@ const LogList = () => {
     }
   }, [dataSlice]);
 
+  useEffect(() => {
+    setSelectedList([]);
+  }, [dataSlice]);
+
   return (
     <div>
       <FilterLogs />
+
+      <div className="list-header">
+        {selectList.length === 0 && (
+          <div className="list-lables">
+            <div style={{ width: "10px" }}></div>
+            <div className="item-weekday">day</div>
+            <div className="item-date">date</div>
+            <div className="item-time">time</div>
+            <div className="item-status">status</div>
+          </div>
+        )}
+        {selectList.length > 0 && (
+          <div className="list-actions">
+            <IconButton
+              onClick={deleteHandler}
+              aria-label="delete"
+              size="small"
+            >
+              <DeleteIcon fontSize="inherit" />
+            </IconButton>
+
+            {selectList.length === 1 && (
+              <IconButton
+                onClick={editHandler}
+                aria-label="delete"
+                size="small"
+              >
+                <EditIcon fontSize="inherit" />
+              </IconButton>
+            )}
+          </div>
+        )}
+      </div>
+
       <div>
         {loadedLogs.map((item) => (
-          <DataItem item={item} key={item.id} />
+          <DataItem
+            item={item}
+            key={item.id}
+            onCheckbox={checkHandler}
+            isSelected={selectList.includes(item.id)}
+          />
         ))}
       </div>
     </div>

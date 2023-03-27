@@ -1,32 +1,26 @@
-import { MdDelete, MdEdit } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { dataActions } from "../store/dataSlice";
+import { useSelector } from "react-redux";
 import { convert2Date, convert2Time } from "../util/helper";
 
 const DataItem = (props) => {
   const rowClass = `item-row ${props.item.status === "in" ? "green" : "red"}`;
+  const uiSlice = useSelector((state) => state.ui);
 
-  const dispatch = useDispatch();
-  const deleteHandler = () => {
-    dispatch(dataActions.setDeleteId({ id: props.item.id }));
-  };
-
-  const editHandler = () => {
-    dispatch(dataActions.setEditId({ id: props.item.id }));
-  };
+  const time = convert2Time(props.item.timeStamp, uiSlice.langOption);
+  const date = convert2Date(props.item.timeStamp, uiSlice.langOption);
+  const dayWeek = new Intl.DateTimeFormat(uiSlice.langOption, {
+    weekday: "short",
+  }).format(new Date(props.item.timeStamp));
   return (
     <div className={rowClass}>
-      <div className="item-date">{convert2Date(props.item.timeStamp)}</div>
-      <div className="item-time">{convert2Time(props.item.timeStamp)}</div>
+      <input
+        type="checkbox"
+        onChange={props.onCheckbox.bind(null, props.item.id)}
+        checked={props.isSelected}
+      />
+      <div className="item-weekday">{dayWeek}</div>
+      <div className="item-date">{date}</div>
+      <div className="item-time">{time}</div>
       <div className="item-status">{props.item.status}</div>
-      <div className="item-actions">
-        <MdDelete
-          className="item-delete"
-          color="#a8a8a8"
-          onClick={deleteHandler}
-        />
-        <MdEdit className="item-delete" color="#a8a8a8" onClick={editHandler} />
-      </div>
     </div>
   );
 };

@@ -40,7 +40,7 @@ function App() {
         theme="light"
       />
       {dataSlice.editId && <DataForm />}
-      {dataSlice.deleteId && <DeleteModal />}
+      {dataSlice.deleteIds && <DeleteModal />}
       <main>
         <div className="actions">
           <Btn title="In" status="in" />

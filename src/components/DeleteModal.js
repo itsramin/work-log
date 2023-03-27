@@ -6,10 +6,10 @@ const DeleteModal = () => {
   const dispatch = useDispatch();
   const dataSlice = useSelector((state) => state.data);
   const yesHandler = () => {
-    dispatch(dataActions.delete({ id: dataSlice.deleteId }));
+    dispatch(dataActions.delete(dataSlice.deleteIds));
   };
   const noHandler = () => {
-    dispatch(dataActions.clearDeleteId());
+    dispatch(dataActions.clearDeleteIds());
   };
 
   return (
