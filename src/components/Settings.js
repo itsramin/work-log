@@ -66,10 +66,9 @@ const Settings = () => {
             const hourToSec = +formattedTime.split(":")[0] * 60 * 60;
             const minToSec = +formattedTime.split(":")[1] * 60;
             const sec = +formattedTime.split(":")[2];
-            const offsetToSec = new Date().getTimezoneOffset() * 60;
+            // const offsetToSec = new Date().getTimezoneOffset() * 60;
             const timeStamp =
-              +new Date(row.date) +
-              (hourToSec + minToSec + sec + offsetToSec) * 1000;
+              +new Date(row.date) + (hourToSec + minToSec + sec) * 1000;
             return {
               id: `${+new Date()}-${i}`,
               status: row.status,
