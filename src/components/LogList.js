@@ -44,7 +44,9 @@ const LogList = () => {
       );
     } else if (dataSlice.date1Filter) {
       setLoadedLogs((prev) =>
-        [...prev].filter((item) => item.date === dataSlice.date1Filter)
+        [...prev].filter(
+          (item) => item.timeStamp >= +new Date(dataSlice.date1Filter) - 10
+        )
       );
     }
 
