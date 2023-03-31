@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  overflow-y: overlay;
 }
 
 input {
@@ -23,6 +24,9 @@ input {
   background-color: #dfdfdf;
   border-radius: 60px;
   border: 7px solid white;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(60%);
 }
 
 code {

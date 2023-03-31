@@ -5,7 +5,7 @@
 main {
   max-width: 400px;
   margin: 0 auto;
-  padding: 1.5rem 2rem;
+  padding: 0rem 1rem;
 }
 .actions {
   display: flex;
@@ -79,37 +79,57 @@ main {
 
 .item-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 40px;
   padding: 0 10px;
   text-align: center;
 }
+.item-row div {
+  width: 100%;
+}
 .item-date {
-  width: 90px;
+  /* width: 90px; */
 }
 .item-time {
-  width: 50px;
+  /* width: 50px; */
 }
 .item-status {
-  width: 40px;
+  /* width: 40px; */
 }
 .item-weekday {
-  width: 40px;
+  /* width: 30px; */
+}
+.item-checkbox {
+  width: 30%;
 }
 
 .list-header {
   height: 40px;
+  position: sticky;
+  top: 0;
+  padding: 0 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #444;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.list-header div {
+  text-align: center;
+  width: 100%;
+}
+.list-header input {
+  width: 30%;
 }
 .list-lables {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 7px 10px 0;
 }
-.list-lables div {
-  text-align: center;
-}
+
 .list-actions {
   display: flex;
   align-items: center;
@@ -137,6 +157,9 @@ main {
 .red {
   background-color: #fff2f2;
 }
+.yellow {
+  background-color: #fffdf2;
+}
 .item-actions {
   display: flex;
   width: 40px;
@@ -161,7 +184,7 @@ main {
   color: #fff;
 }
 .filter-box {
-  margin: 1rem 0;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
 
@@ -184,9 +207,15 @@ main {
   background-color: transparent;
 }
 .filter-status-box {
+  user-select: none;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
+}
+.filter-text {
+  color: #777;
   user-select: none;
 }
 .filter-label {
@@ -206,11 +235,15 @@ main {
   padding: 4px 10px 1px;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
   user-select: none;
-  margin-left: 10px;
+  text-align: center;
+}
+.filter-btn:not(:last-child) {
+  margin-right: 1rem;
 }
 .tabs {
-  margin: 2rem 0;
+  padding: 1rem 0 2rem;
 }
 .tab {
   color: #1e7ebe;
@@ -270,4 +303,8 @@ main {
 }
 .import-btn-hidden {
   display: none;
+}
+.fab {
+  position: fixed;
+  right: 2rem;
 }

@@ -75,13 +75,13 @@ const LogList = () => {
 
       <div className="list-header">
         {selectList.length === 0 && (
-          <div className="list-lables">
-            <div style={{ width: "10px" }}></div>
-            <div className="item-weekday">day</div>
-            <div className="item-date">date</div>
-            <div className="item-time">time</div>
-            <div className="item-status">status</div>
-          </div>
+          <>
+            <input type="checkbox" />
+            <div className="item-weekday">Day</div>
+            <div className="item-date">Date</div>
+            <div className="item-time">Time</div>
+            <div className="item-status">Status</div>
+          </>
         )}
         {selectList.length > 0 && (
           <div className="list-actions">
@@ -115,6 +115,53 @@ const LogList = () => {
             isSelected={selectList.includes(item.id)}
           />
         ))}
+        {/* <DataTable list={loadedLogs} /> */}
+        {/* <TableContainer component={Paper}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell></TableCell>
+                <TableCell align="center">Day</TableCell>
+                <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Time</TableCell>
+                <TableCell align="center">Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {loadedLogs.map((row, i) => (
+                // <TableRow key={row.id} selected={selectedRow === row.id}>
+                //   <TableCell component="th" scope="row">
+                //     {row.name}
+                //   </TableCell>
+                //   <TableCell align="right">{row.calories}</TableCell>
+                //   <TableCell align="right">{row.fat}</TableCell>
+                //   <TableCell align="right">{row.carbs}</TableCell>
+                //   <TableCell align="right">{row.protein}</TableCell>
+                //   <TableCell align="right">
+                //     <IconButton
+                //       aria-label="edit"
+                //       onClick={() => handleEdit(row.id)}
+                //     >
+                //       <EditIcon />
+                //     </IconButton>
+                //     <IconButton
+                //       aria-label="delete"
+                //       onClick={() => handleDelete(row.id)}
+                //     >
+                //       <DeleteIcon />
+                //     </IconButton>
+                //   </TableCell>
+                // </TableRow>
+                <DataItem
+                  key={i}
+                  item={row}
+                  onCheckbox={checkHandler}
+                  isSelected={selectList.includes(row.id)}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer> */}
       </div>
     </div>
   );
