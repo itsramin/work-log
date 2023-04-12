@@ -86,6 +86,9 @@ main {
   border-bottom: 2px solid #b6b6b6;
   background-color: transparent;
 }
+.fa-number {
+  font-feature-settings: "ss01";
+}
 input[type="time"] {
   font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
@@ -310,7 +313,7 @@ input[type="time"] {
   background-color: #e2f4ff;
 }
 .weekCol {
-  width: 25%;
+  width: 20%;
   font-size: 0.95rem;
   text-align: center;
   padding: 4px 0 3px;

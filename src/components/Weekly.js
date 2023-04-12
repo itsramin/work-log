@@ -83,6 +83,9 @@ const Weekly = () => {
     setSumWork(newSum);
   }, [weekArr]);
 
+  const workTimeClass = `weekCol ${uiSlice.language === "Fa" && "fa-number"}`;
+  const workSumClass = `weekSum ${uiSlice.language === "Fa" && "fa-number"}`;
+
   return (
     <div className="weekContainer">
       <div className="weekHeaderContainer">
@@ -99,14 +102,14 @@ const Weekly = () => {
             <div className="weekCol">{day.date}</div>
             <div className="weekCol">{day.in}</div>
             <div className="weekCol">{day.out}</div>
-            <div className="weekCol">
+            <div className={workTimeClass}>
               {day.in && day.out && calcWorkTime(day.workTime)}
             </div>
           </div>
         );
       })}
       <div className="weekSumContainer">
-        <div className="weekSum">Sum {calcWorkTime(sumWork)}</div>
+        <div className={workSumClass}>Sum {calcWorkTime(sumWork)}</div>
       </div>
     </div>
   );
