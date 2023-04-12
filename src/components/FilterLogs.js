@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { DatePicker } from "zaman";
 import { dataActions } from "../store/dataSlice";
 
 const FilterLogs = () => {
   const [filterDate1, setFilterDate1] = useState("");
   const [filterDate2, setFilterDate2] = useState("");
+  const [filterDateFa1, setFilterDateFa1] = useState(false);
+  const [filterDateFa2, setFilterDateFa2] = useState(false);
   const [filteredStatus, setFilteredStatus] = useState("");
   const dispatch = useDispatch();
   const dataSlice = useSelector((state) => state.data);
+  const uiSlice = useSelector((state) => state.ui);
   useEffect(() => {
     resetHandler();
   }, []);
@@ -20,6 +24,15 @@ const FilterLogs = () => {
     setFilterDate2(e.target.value);
     dispatch(dataActions.setDate2Filter(e.target.value));
   };
+  const dateFa1ChangeHandler = (e) => {
+    const value = e.value;
+    dispatch(dataActions.setDate1Filter(value.toISOString().slice(0, 10)));
+  };
+  const dateFa2ChangeHandler = (e) => {
+    const value = e.value;
+    dispatch(dataActions.setDate2Filter(value.toISOString().slice(0, 10)));
+  };
+
   const statusHandler = (e) => {
     setFilteredStatus(e.target.value);
     dispatch(dataActions.setStatusFilter(e.target.value));
@@ -28,6 +41,8 @@ const FilterLogs = () => {
     setFilterDate1("");
     setFilterDate2("");
     setFilteredStatus("");
+    setFilterDateFa1(false);
+    setFilterDateFa2(false);
     dispatch(dataActions.clearDate1Filter());
     dispatch(dataActions.clearDate2Filter());
     dispatch(dataActions.clearStatusFilter());
@@ -44,21 +59,57 @@ const FilterLogs = () => {
     <div className="filter-box">
       <div className="filter-row">
         <div className="filter-text">Form</div>
-        <input
-          type="date"
-          value={filterDate1}
-          onChange={date1ChangeHandler}
-          className="filter-date"
-        />
+        {uiSlice.language === "Fa" && (
+          <>
+            {filterDateFa1 && (
+              <div className="filter-datePicker">
+                <DatePicker onChange={dateFa1ChangeHandler} round="x2" />
+              </div>
+            )}
+            {!filterDateFa1 && (
+              <div
+                className="filter-noDate"
+                onClick={() => setFilterDateFa1(true)}
+              ></div>
+            )}
+          </>
+        )}
+
+        {uiSlice.language === "En" && (
+          <input
+            type="date"
+            value={filterDate1}
+            onChange={date1ChangeHandler}
+            className="filter-date"
+          />
+        )}
       </div>
       <div className="filter-row">
         <div className="filter-text">To</div>
-        <input
-          type="date"
-          value={filterDate2}
-          onChange={date2ChangeHandler}
-          className="filter-date"
-        />
+        {uiSlice.language === "Fa" && (
+          <>
+            {filterDateFa2 && (
+              <div className="filter-datePicker">
+                <DatePicker onChange={dateFa2ChangeHandler} round="x2" />
+              </div>
+            )}
+            {!filterDateFa2 && (
+              <div
+                className="filter-noDate"
+                onClick={() => setFilterDateFa2(true)}
+              ></div>
+            )}
+          </>
+        )}
+
+        {uiSlice.language === "En" && (
+          <input
+            type="date"
+            value={filterDate2}
+            onChange={date2ChangeHandler}
+            className="filter-date"
+          />
+        )}
       </div>
       <div className="filter-row">
         <div className="filter-text">Status</div>

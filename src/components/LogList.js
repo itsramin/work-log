@@ -36,10 +36,7 @@ const LogList = () => {
           (item) =>
             item.timeStamp >= +new Date(dataSlice.date1Filter) - 10 &&
             item.timeStamp <
-              +new Date(
-                dataSlice.date2Filter.slice(0, 8) +
-                  (+dataSlice.date2Filter.slice(8, 10) + 1)
-              )
+              +new Date(+new Date(dataSlice.date2Filter) + 24 * 60 * 60 * 1000)
         )
       );
     } else if (dataSlice.date1Filter) {

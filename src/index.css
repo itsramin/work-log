@@ -9,11 +9,13 @@ body {
   overflow-y: overlay;
 }
 
-input {
+input,
+button {
   font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 100%;
 }
+
 ::-webkit-scrollbar {
   width: 20px;
 }

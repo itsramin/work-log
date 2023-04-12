@@ -65,6 +65,33 @@ main {
   border-radius: 10px;
   margin: 0 1rem;
 }
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-datePicker input {
+  width: 90px !important;
+  text-align: center;
+  margin-left: 10px;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}
+.form-timePicker input {
+  width: 120px !important;
+  text-align: center;
+  margin-left: 10px;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}
+input[type="time"] {
+  font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-feature-settings: "ss01";
+}
+
 .options {
   margin: 2rem 0;
 }
@@ -307,4 +334,41 @@ main {
 .fab {
   position: fixed;
   right: 2rem;
+}
+
+.filter-timePicker input {
+  width: 50px !important;
+  text-align: center;
+  margin-left: 10px;
+  color: #777;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}
+.filter-datePicker input {
+  width: 90px !important;
+  text-align: center;
+  color: #777;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}
+.filter-noDate {
+  width: 90px !important;
+  border-bottom: 2px solid #b6b6b6;
+  height: 27px;
+}
+
+/* zaman package  */
+.css-7qlbje {
+  right: 0 !important;
+}
+.css-11ydt2g {
+  justify-content: space-between !important;
+  padding: 0 8px;
+}
+.css-15c7cx9 {
+  left: 50% !important;
+  transform: translate(-50%);
+  z-index: 100;
 }
