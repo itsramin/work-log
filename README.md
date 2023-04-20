@@ -1,12 +1,9 @@
-# pomodoro
+# Worl-log
 
-A pomodoro app based on [pomofocus.io](https://pomofocus.io/) with react.
-User can
+A simple work log
 
-- change pomodoro and breaks time
-- set short breaks interval
-- set timer start automatically
-- view reports in weekly and monthly tables
-- edit reports
+- in, out, leave options
+- import and export logs with xlsx
+- persian and english
 
-You can find demo [here](https://itsramin.github.io/pomodoro/).
+You can find demo [here](https://itsramin.github.io/work-log/).
