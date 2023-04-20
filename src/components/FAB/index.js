@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Fab } from "@mui/material";
 import { MdAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { dataActions } from "../store/dataSlice";
+import { dataActions } from "../../store/dataSlice";
 const styles = {
   fab: {
     position: "fixed",

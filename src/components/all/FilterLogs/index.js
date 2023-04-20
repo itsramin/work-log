@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DatePicker } from "zaman";
-import { dataActions } from "../store/dataSlice";
+import { dataActions } from "../../../store/dataSlice";
+import styles from "./index.module.css";
 
 const FilterLogs = () => {
   const [filterDate1, setFilterDate1] = useState("");
@@ -12,9 +13,21 @@ const FilterLogs = () => {
   const dispatch = useDispatch();
   const dataSlice = useSelector((state) => state.data);
   const uiSlice = useSelector((state) => state.ui);
+
+  const resetHandler = useCallback(() => {
+    setFilterDate1("");
+    setFilterDate2("");
+    setFilteredStatus("");
+    setFilterDateFa1(false);
+    setFilterDateFa2(false);
+    dispatch(dataActions.clearDate1Filter());
+    dispatch(dataActions.clearDate2Filter());
+    dispatch(dataActions.clearStatusFilter());
+  }, [dispatch]);
+
   useEffect(() => {
     resetHandler();
-  }, []);
+  }, [resetHandler]);
 
   const date1ChangeHandler = (e) => {
     setFilterDate1(e.target.value);
@@ -37,16 +50,7 @@ const FilterLogs = () => {
     setFilteredStatus(e.target.value);
     dispatch(dataActions.setStatusFilter(e.target.value));
   };
-  const resetHandler = () => {
-    setFilterDate1("");
-    setFilterDate2("");
-    setFilteredStatus("");
-    setFilterDateFa1(false);
-    setFilterDateFa2(false);
-    dispatch(dataActions.clearDate1Filter());
-    dispatch(dataActions.clearDate2Filter());
-    dispatch(dataActions.clearStatusFilter());
-  };
+
   const sortHandler = () => {
     if (dataSlice.sort === "Az") {
       dispatch(dataActions.setSort("Za"));
@@ -56,19 +60,19 @@ const FilterLogs = () => {
   };
 
   return (
-    <div className="filter-box">
-      <div className="filter-row">
-        <div className="filter-text">Form</div>
+    <div className={styles["filter-box"]}>
+      <div className={styles["filter-row"]}>
+        <div className={styles["filter-text"]}>Form</div>
         {uiSlice.language === "Fa" && (
           <>
             {filterDateFa1 && (
-              <div className="filter-datePicker">
+              <div className={styles["filter-datePicker"]}>
                 <DatePicker onChange={dateFa1ChangeHandler} round="x2" />
               </div>
             )}
             {!filterDateFa1 && (
               <div
-                className="filter-noDate"
+                className={styles["filter-noDate"]}
                 onClick={() => setFilterDateFa1(true)}
               ></div>
             )}
@@ -80,22 +84,22 @@ const FilterLogs = () => {
             type="date"
             value={filterDate1}
             onChange={date1ChangeHandler}
-            className="filter-date"
+            className={styles["filter-date"]}
           />
         )}
       </div>
-      <div className="filter-row">
-        <div className="filter-text">To</div>
+      <div className={styles["filter-row"]}>
+        <div className={styles["filter-text"]}>To</div>
         {uiSlice.language === "Fa" && (
           <>
             {filterDateFa2 && (
-              <div className="filter-datePicker">
+              <div className={styles["filter-datePicker"]}>
                 <DatePicker onChange={dateFa2ChangeHandler} round="x2" />
               </div>
             )}
             {!filterDateFa2 && (
               <div
-                className="filter-noDate"
+                className={styles["filter-noDate"]}
                 onClick={() => setFilterDateFa2(true)}
               ></div>
             )}
@@ -107,14 +111,14 @@ const FilterLogs = () => {
             type="date"
             value={filterDate2}
             onChange={date2ChangeHandler}
-            className="filter-date"
+            className={styles["filter-date"]}
           />
         )}
       </div>
-      <div className="filter-row">
-        <div className="filter-text">Status</div>
-        <div className="filter-status-box">
-          <label htmlFor="in" className="filter-label">
+      <div className={styles["filter-row"]}>
+        <div className={styles["filter-text"]}>Status</div>
+        <div className={styles["filter-status-box"]}>
+          <label htmlFor="in" className={styles["filter-label"]}>
             <input
               type="radio"
               value="in"
@@ -125,7 +129,7 @@ const FilterLogs = () => {
             />
             <span>in</span>
           </label>
-          <label htmlFor="out" className="filter-label">
+          <label htmlFor="out" className={styles["filter-label"]}>
             <input
               type="radio"
               value="out"
@@ -136,7 +140,7 @@ const FilterLogs = () => {
             />
             <span>out</span>
           </label>
-          <label htmlFor="leave" className="filter-label">
+          <label htmlFor="leave" className={styles["filter-label"]}>
             <input
               type="radio"
               value="leave"
@@ -149,11 +153,11 @@ const FilterLogs = () => {
           </label>
         </div>
       </div>
-      <div className="filter-row">
-        <div onClick={sortHandler} className="filter-btn">
+      <div className={styles["filter-row"]}>
+        <div onClick={sortHandler} className={styles["filter-btn"]}>
           {dataSlice.sort}
         </div>
-        <div onClick={resetHandler} className="filter-btn">
+        <div onClick={resetHandler} className={styles["filter-btn"]}>
           Reset
         </div>
       </div>

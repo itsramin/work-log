@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx/xlsx.mjs";
-import { dataActions } from "../store/dataSlice";
+import { dataActions } from "../../store/dataSlice";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -13,9 +13,9 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import LanguageIcon from "@mui/icons-material/Language";
-import { convert2Date, convert2Time } from "../util/helper";
+import { convert2Date, convert2Time } from "../../util/helper";
 import Switch from "@mui/material/Switch";
-import { uiActions } from "../store/uiSlice";
+import { uiActions } from "../../store/uiSlice";
 
 const Settings = () => {
   const dataSlice = useSelector((state) => state.data);

@@ -1,0 +1,27 @@
+.list-header {
+  height: 50px;
+  position: sticky;
+  top: 0;
+  padding: 0 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #444;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.list-header div {
+  text-align: center;
+  width: 100%;
+}
+.list-header input {
+  width: 30%;
+}
+
+.list-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0 1rem;
+}

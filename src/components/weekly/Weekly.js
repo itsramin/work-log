@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { calcWorkTime, convert2Date, convert2Time } from "../util/helper";
+import { calcWorkTime, convert2Date, convert2Time } from "../../util/helper";
 
+import styles from "./Weekly.module.css";
 const Weekly = () => {
   const dataSlice = useSelector((state) => state.data);
   const uiSlice = useSelector((state) => state.ui);
@@ -83,32 +84,36 @@ const Weekly = () => {
     setSumWork(newSum);
   }, [weekArr]);
 
-  const workTimeClass = `weekCol ${uiSlice.language === "Fa" && "fa-number"}`;
-  const workSumClass = `weekSum ${uiSlice.language === "Fa" && "fa-number"}`;
+  const workTimeClass = `${styles.weekCol} ${
+    uiSlice.language === "Fa" && styles["fa-number"]
+  }`;
+  const workSumClass = `${styles.weekSum} ${
+    uiSlice.language === "Fa" && styles["fa-number"]
+  }`;
 
   return (
-    <div className="weekContainer">
-      <div className="weekHeaderContainer">
-        <div className="weekHeader">Day</div>
-        <div className="weekHeader">Date</div>
-        <div className="weekHeader">In</div>
-        <div className="weekHeader">Out</div>
-        <div className="weekHeader">Work</div>
+    <div className={styles.weekContainer}>
+      <div className={styles.weekHeaderContainer}>
+        <div className={styles.weekHeader}>Day</div>
+        <div className={styles.weekHeader}>Date</div>
+        <div className={styles.weekHeader}>In</div>
+        <div className={styles.weekHeader}>Out</div>
+        <div className={styles.weekHeader}>Work</div>
       </div>
       {weekArr.map((day) => {
         return (
-          <div key={day.dayId} className="weekItem">
-            <div className="weekCol">{day.weekday}</div>
-            <div className="weekCol">{day.date}</div>
-            <div className="weekCol">{day.in}</div>
-            <div className="weekCol">{day.out}</div>
+          <div key={day.dayId} className={styles.weekItem}>
+            <div className={styles.weekCol}>{day.weekday}</div>
+            <div className={styles.weekCol}>{day.date}</div>
+            <div className={styles.weekCol}>{day.in}</div>
+            <div className={styles.weekCol}>{day.out}</div>
             <div className={workTimeClass}>
               {day.in && day.out && calcWorkTime(day.workTime)}
             </div>
           </div>
         );
       })}
-      <div className="weekSumContainer">
+      <div className={styles.weekSumContainer}>
         <div className={workSumClass}>Sum {calcWorkTime(sumWork)}</div>
       </div>
     </div>

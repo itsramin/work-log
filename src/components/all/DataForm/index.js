@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { MdCheck, MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { dataActions } from "../store/dataSlice";
-import Modal from "./Modal";
+import { dataActions } from "../../../store/dataSlice";
+import Modal from "../../Modal";
 import { DatePicker } from "zaman";
+import styles from "./index.module.css";
 
 const DataForm = () => {
   const dataSlice = useSelector((state) => state.data);
@@ -59,7 +60,7 @@ const DataForm = () => {
   };
   return (
     <Modal>
-      <form className="form" onSubmit={submitHandler}>
+      <form className={styles.form} onSubmit={submitHandler}>
         {uiSlice.language === "En" && (
           <input
             type="datetime-local"
@@ -68,28 +69,24 @@ const DataForm = () => {
           />
         )}
         {uiSlice.language === "Fa" && (
-          <div className="form-row">
-            <div className="form-datePicker">
+          <div className={styles["form-row"]}>
+            <div className={styles["form-datePicker"]}>
               <DatePicker
                 defaultValue={selectedDate}
                 onChange={dateFaChangeHandler}
               />
             </div>
-            <div className="form-timePicker">
+            <div className={styles["form-timePicker"]}>
               <input
                 type="time"
                 onChange={timeFaChangeHandler}
                 value={selectedTime}
               />
-              {/* <TimePicker
-                defaultValue={selectedTime}
-                onChange={timeFaChangeHandler}
-              /> */}
             </div>
           </div>
         )}
-        <div className="form-status">
-          <label htmlFor="in" className="form-label">
+        <div className={styles["form-status"]}>
+          <label htmlFor="in" className={styles["form-label"]}>
             <input
               type="radio"
               value="in"
@@ -100,7 +97,7 @@ const DataForm = () => {
             />
             <span>in</span>
           </label>
-          <label htmlFor="out" className="form-label">
+          <label htmlFor="out" className={styles["form-label"]}>
             <input
               type="radio"
               value="out"
@@ -111,7 +108,7 @@ const DataForm = () => {
             />
             <span>out</span>
           </label>
-          <label htmlFor="leave" className="form-label">
+          <label htmlFor="leave" className={styles["form-label"]}>
             <input
               type="radio"
               value="leave"
@@ -124,11 +121,11 @@ const DataForm = () => {
           </label>
         </div>
 
-        <div className="form-actions">
-          <div className="form-cancel-icon" onClick={closeHandler}>
+        <div className={styles["form-actions"]}>
+          <div className={styles["form-cancel-icon"]} onClick={closeHandler}>
             <MdClose />
           </div>
-          <div className="form-check-icon" onClick={submitHandler}>
+          <div className={styles["form-check-icon"]} onClick={submitHandler}>
             <MdCheck />
           </div>
         </div>

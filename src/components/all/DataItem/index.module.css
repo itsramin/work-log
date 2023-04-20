@@ -1,0 +1,24 @@
+.item-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  text-align: center;
+}
+.item-row div {
+  width: 100%;
+}
+
+.item-checkbox {
+  width: 30%;
+}
+.green {
+  background-color: #ebffee;
+}
+.red {
+  background-color: #fff2f2;
+}
+.yellow {
+  background-color: #fffdf2;
+}
