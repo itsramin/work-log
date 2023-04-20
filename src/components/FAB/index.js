@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { Fab } from "@mui/material";
 import { MdAdd } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dataActions } from "../../store/dataSlice";
 const styles = {
   fab: {
     position: "fixed",
     bottom: "2rem",
     right: "2rem",
+    fontFamily: "Vazirmatn",
   },
 };
 
 const FAB = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const uiSlice = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const handleFabClick = () => {
     setMenuOpen(!menuOpen);
@@ -31,9 +33,9 @@ const FAB = () => {
   };
 
   const fabList = [
-    { label: "In", value: "in" },
-    { label: "Out", value: "out" },
-    { label: "Day Leave", value: "leave" },
+    { label: "In", value: "in", faLabel: "ورود" },
+    { label: "Out", value: "out", faLabel: "خروج" },
+    { label: "Day Leave", value: "leave", faLabel: "مرخصی" },
   ];
   return (
     <>
@@ -50,7 +52,7 @@ const FAB = () => {
             variant="extended"
             key={i}
           >
-            {item.label}
+            {uiSlice.language === "Fa" ? item.faLabel : item.label}
           </Fab>
         ))}
     </>

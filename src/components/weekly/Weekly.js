@@ -69,6 +69,14 @@ const Weekly = () => {
           Math.floor(targetout.timeStamp / 1000 / 60) -
           Math.floor(targetIn.timeStamp / 1000 / 60);
       }
+
+      const targetLeave = dataSlice.list.find(
+        (log) =>
+          convert2Date(log.timeStamp, uiSlice.langOption) === calcDate &&
+          log.status === "leave"
+      );
+
+      day.leave = targetLeave ? true : false;
     });
 
     setWeekArr(newArr);
@@ -105,11 +113,23 @@ const Weekly = () => {
           <div key={day.dayId} className={styles.weekItem}>
             <div className={styles.weekCol}>{day.weekday}</div>
             <div className={styles.weekCol}>{day.date}</div>
-            <div className={styles.weekCol}>{day.in}</div>
-            <div className={styles.weekCol}>{day.out}</div>
-            <div className={workTimeClass}>
-              {day.in && day.out && calcWorkTime(day.workTime)}
-            </div>
+            {day.leave ? (
+              <>
+                <div className={styles.weekCol}></div>
+                <div className={styles.weekCol}>
+                  {uiSlice.language === "Fa" ? "مرخصی" : "Leave"}
+                </div>
+                <div className={styles.weekCol}></div>
+              </>
+            ) : (
+              <>
+                <div className={styles.weekCol}>{day.in}</div>
+                <div className={styles.weekCol}>{day.out}</div>
+                <div className={workTimeClass}>
+                  {day.in && day.out && calcWorkTime(day.workTime)}
+                </div>
+              </>
+            )}
           </div>
         );
       })}
