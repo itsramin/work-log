@@ -1,6 +1,14 @@
 // service-worker.js
 const cacheName = "your-app-name";
-const assets = ["/", "/index.html", "/manifest.json"];
+const assets = [
+  "/",
+  "/index.html",
+  "/manifest.json",
+  "/static/css/main.fe07c309.css",
+  "main.fe07c309.css.map",
+  "/static/js/main.e8d0ed49.js",
+  "/static/js/main.e8d0ed49.js.map",
+];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
