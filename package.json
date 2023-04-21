@@ -52,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "workbox-cli": "^6.5.4",
+    "workbox-sw": "^6.5.4"
   }
 }
