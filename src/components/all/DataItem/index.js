@@ -18,6 +18,12 @@ const DataItem = (props) => {
   const dayWeek = new Intl.DateTimeFormat(uiSlice.langOption, {
     weekday: "short",
   }).format(new Date(props.item.timeStamp));
+
+  const statusObj = {
+    in: { label: "In", faLabel: "ورود" },
+    out: { label: "Out", faLabel: "خروج" },
+    leave: { label: "Leave", faLabel: "مرخصی" },
+  };
   return (
     <div className={rowClass}>
       <input
@@ -29,7 +35,11 @@ const DataItem = (props) => {
       <div>{dayWeek}</div>
       <div>{date}</div>
       <div>{time}</div>
-      <div>{props.item.status}</div>
+      <div>
+        {uiSlice.language === "Fa"
+          ? statusObj[props.item.status].faLabel
+          : statusObj[props.item.status].label}
+      </div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-import TabsSection from "./components/TabsSection/TabsSection";
+import AppDrawer from "./AppDrawer";
 
 function App() {
   const dataSlice = useSelector((state) => state.data);
@@ -30,9 +30,7 @@ function App() {
       />
       {dataSlice.editId && <DataForm />}
       {dataSlice.deleteIds && <DeleteModal />}
-      <main>
-        <TabsSection />
-      </main>
+      <AppDrawer />
     </div>
   );
 }

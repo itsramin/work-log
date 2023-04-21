@@ -134,7 +134,11 @@ const Weekly = () => {
         );
       })}
       <div className={styles.weekSumContainer}>
-        <div className={workSumClass}>Sum {calcWorkTime(sumWork)}</div>
+        <div className={workSumClass}>
+          {`
+          ${uiSlice.language === "Fa" ? "جمع" : "Sum"} ${calcWorkTime(sumWork)}
+          `}
+        </div>
       </div>
     </div>
   );

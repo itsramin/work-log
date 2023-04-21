@@ -3,12 +3,17 @@
   height: 100vh;
 }
 main {
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0rem 1rem;
 }
 
 input[type="time"] {
+  font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-feature-settings: "ss01";
+}
+.fa {
   font-family: Vazirmatn, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   font-feature-settings: "ss01";
