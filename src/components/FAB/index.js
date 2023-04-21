@@ -3,6 +3,7 @@ import { Fab } from "@mui/material";
 import { MdAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { dataActions } from "../../store/dataSlice";
+import { LANG_OBJ, STATUS_ARR } from "../../util/labels";
 const styles = {
   fab: {
     position: "fixed",
@@ -32,11 +33,6 @@ const FAB = () => {
     setMenuOpen(false);
   };
 
-  const fabList = [
-    { label: "In", value: "in", faLabel: "ورود" },
-    { label: "Out", value: "out", faLabel: "خروج" },
-    { label: "Day Leave", value: "leave", faLabel: "مرخصی" },
-  ];
   return (
     <>
       <Fab style={styles.fab} color="primary" onClick={handleFabClick}>
@@ -44,15 +40,15 @@ const FAB = () => {
       </Fab>
 
       {menuOpen &&
-        fabList.map((item, i) => (
+        STATUS_ARR.map((item, i) => (
           <Fab
             style={{ ...styles.fab, bottom: `${4 * (i + 1) + 2}rem` }}
             color="secondary"
-            onClick={() => handleMenuItemClick(item.value)}
+            onClick={() => handleMenuItemClick(item.name)}
             variant="extended"
             key={i}
           >
-            {uiSlice.language === "Fa" ? item.faLabel : item.label}
+            {item[LANG_OBJ[uiSlice.language]]}
           </Fab>
         ))}
     </>

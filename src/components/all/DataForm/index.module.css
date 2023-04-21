@@ -1,65 +1,70 @@
-
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    justify-content: space-between;
-    margin: 1rem 0;
-  }
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-  .form-label {
-    margin: 0 1rem;
-  }
-  .form-label span {
-    margin: 0 0.5rem;
-  }
-  .form-status {
-    display: flex;
-    align-items: center;
-  }
-  .form-cancel-icon {
-    background-color: #d65858;
-    padding: 0.6rem 3rem;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    margin: 0 0.5rem;
-  }
-  .form-check-icon {
-    background-color: rgb(41, 155, 102);
-    padding: 0.6rem 3rem;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    margin: 0 1rem;
-  }
-  .form-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .form-datePicker input {
-    width: 90px !important;
-    text-align: center;
-    margin-left: 10px;
-    border: none;
-    border-bottom: 2px solid #b6b6b6;
-    background-color: transparent;
-  }
-  .form-timePicker input {
-    width: 120px !important;
-    text-align: center;
-    margin-left: 10px;
-    border: none;
-    border-bottom: 2px solid #b6b6b6;
-    background-color: transparent;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.form-label {
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.form-label-fa {
+  flex-direction: row-reverse;
+}
+.form-label span {
+  margin: 0 0.5rem;
+}
+.form-status {
+  display: flex;
+  align-items: center;
+}
+.form-cancel-icon {
+  background-color: #d65858;
+  padding: 0.6rem 3rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+}
+.form-check-icon {
+  background-color: rgb(41, 155, 102);
+  padding: 0.6rem 3rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin: 0 1rem;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-datePicker input {
+  width: 90px !important;
+  text-align: center;
+  margin-left: 10px;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}
+.form-timePicker input {
+  width: 120px !important;
+  text-align: center;
+  margin-left: 10px;
+  border: none;
+  border-bottom: 2px solid #b6b6b6;
+  background-color: transparent;
+}

@@ -7,9 +7,11 @@ import FilterLogs from "../FilterLogs";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import styles from "./index.module.css";
+import { HEADER_ARR, LANG_OBJ } from "../../../util/labels";
 
 const LogList = () => {
   const dataSlice = useSelector((state) => state.data);
+  const uiSlice = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
   const [loadedLogs, setLoadedLogs] = useState([]);
@@ -27,6 +29,15 @@ const LogList = () => {
   };
   const editHandler = () => {
     dispatch(dataActions.setEditId({ id: selectList[0] }));
+  };
+
+  const checkAllHandler = () => {
+    const allIds = loadedLogs.map((log) => log.id);
+    if (selectList.length === allIds.length) {
+      setSelectedList([]);
+    } else {
+      setSelectedList(allIds);
+    }
   };
 
   useEffect(() => {
@@ -74,35 +85,40 @@ const LogList = () => {
       <FilterLogs />
 
       <div className={styles["list-header"]}>
+        <input
+          type="checkbox"
+          onChange={checkAllHandler}
+          checked={selectList.length === loadedLogs.length}
+        />
         {selectList.length === 0 && (
           <>
-            <input type="checkbox" />
-            <div>Day</div>
-            <div>Date</div>
-            <div>Time</div>
-            <div>Status</div>
+            {HEADER_ARR.map((item, i) => (
+              <div key={i}>{item[LANG_OBJ[uiSlice.language]]}</div>
+            ))}
           </>
         )}
         {selectList.length > 0 && (
-          <div className={styles["list-actions"]}>
-            <IconButton
-              onClick={deleteHandler}
-              aria-label="delete"
-              size="small"
-            >
-              <DeleteIcon fontSize="inherit" />
-            </IconButton>
-
-            {selectList.length === 1 && (
+          <>
+            <div className={styles["list-actions"]}>
               <IconButton
-                onClick={editHandler}
+                onClick={deleteHandler}
                 aria-label="delete"
                 size="small"
               >
-                <EditIcon fontSize="inherit" />
+                <DeleteIcon fontSize="inherit" />
               </IconButton>
-            )}
-          </div>
+
+              {selectList.length === 1 && (
+                <IconButton
+                  onClick={editHandler}
+                  aria-label="delete"
+                  size="small"
+                >
+                  <EditIcon fontSize="inherit" />
+                </IconButton>
+              )}
+            </div>
+          </>
         )}
       </div>
 

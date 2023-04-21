@@ -158,7 +158,7 @@ const AppDrawer = () => {
             <ListItem key={index} disablePadding>
               <ListItemButton
                 onClick={() => handlerSelect(index)}
-                style={{ backgroundColor: selectedTab === index && "#e2f4ff" }}
+                selected={selectedTab === index}
               >
                 <ListItemIcon>{tab.icon}</ListItemIcon>
                 <ListItemText

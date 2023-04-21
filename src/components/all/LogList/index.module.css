@@ -8,14 +8,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 .list-header div {
   text-align: center;
-  width: 100%;
+  width: 23.3%;
 }
 .list-header input {
-  width: 30%;
+  position: absolute;
+  left: 22px;
 }
 
 .list-actions {

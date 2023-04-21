@@ -7,6 +7,12 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import {
+  COMPONENT_OBJ,
+  LANG_OBJ,
+  SORT_ARR,
+  STATUS_ARR,
+} from "../../../util/labels";
 
 const FilterLogs = () => {
   const [filterDate1, setFilterDate1] = useState("");
@@ -61,21 +67,14 @@ const FilterLogs = () => {
     dispatch(dataActions.setStatusFilter(newStatus));
   };
 
-  const sortArr = [
-    { name: "Za", label: "Descend", faLabel: "نزولی" },
-    { name: "Az", label: "Ascend", faLabel: "صعودی" },
-  ];
-  const statusArr = [
-    { name: "in", label: "In", faLabel: "ورود" },
-    { name: "out", label: "Out", faLabel: "خروج" },
-    { name: "leave", label: "Leave", faLabel: "مرخصی" },
-  ];
-
   const faText = {
     fontFamily: "Vazirmatn",
     lineHeight: 1,
   };
   const rowClass = `${styles["filter-row"]} ${
+    uiSlice.language === "Fa" && styles["filter-row-fa"]
+  }`;
+  const rowControlClass = `${styles["filter-control-row"]} ${
     uiSlice.language === "Fa" && styles["filter-row-fa"]
   }`;
 
@@ -140,14 +139,16 @@ const FilterLogs = () => {
 
   return (
     <div className={styles["filter-box"]}>
-      {dateArr.map((item, i) => (
-        <div className={rowClass} key={i}>
-          <div className={styles["filter-text"]}>
-            {uiSlice.language === "Fa" ? item.faLabel : item.label}
+      <div className={rowClass}>
+        {dateArr.map((item, i) => (
+          <div key={i} className={rowControlClass}>
+            <div className={styles["filter-text"]}>
+              {item[LANG_OBJ[uiSlice.language]]}
+            </div>
+            {item[COMPONENT_OBJ[uiSlice.language]]}
           </div>
-          {uiSlice.language === "Fa" ? item.faComponent : item.component}
-        </div>
-      ))}
+        ))}
+      </div>
       <div className={rowClass}>
         <ToggleButtonGroup
           color="primary"
@@ -156,10 +157,10 @@ const FilterLogs = () => {
           onChange={handleStatusChange}
           aria-label="Platform"
         >
-          {statusArr.map((option, i) => (
+          {STATUS_ARR.map((option, i) => (
             <ToggleButton value={option.name} key={i}>
               <Typography style={faText}>
-                {uiSlice.language === "Fa" ? option.faLabel : option.label}
+                {option[LANG_OBJ[uiSlice.language]]}
               </Typography>
             </ToggleButton>
           ))}
@@ -171,10 +172,10 @@ const FilterLogs = () => {
           onChange={handleSortChange}
           aria-label="Platform"
         >
-          {sortArr.map((option, i) => (
+          {SORT_ARR.map((option, i) => (
             <ToggleButton value={option.name} key={i}>
               <Typography style={faText}>
-                {uiSlice.language === "Fa" ? option.faLabel : option.label}
+                {option[LANG_OBJ[uiSlice.language]]}
               </Typography>
             </ToggleButton>
           ))}

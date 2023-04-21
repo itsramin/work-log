@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { convert2Date, convert2Time } from "../../../util/helper";
+import { LANG_OBJ, STATUS_ARR } from "../../../util/labels";
 
 import styles from "./index.module.css";
 
@@ -19,11 +20,6 @@ const DataItem = (props) => {
     weekday: "short",
   }).format(new Date(props.item.timeStamp));
 
-  const statusObj = {
-    in: { label: "In", faLabel: "ورود" },
-    out: { label: "Out", faLabel: "خروج" },
-    leave: { label: "Leave", faLabel: "مرخصی" },
-  };
   return (
     <div className={rowClass}>
       <input
@@ -36,9 +32,11 @@ const DataItem = (props) => {
       <div>{date}</div>
       <div>{time}</div>
       <div>
-        {uiSlice.language === "Fa"
-          ? statusObj[props.item.status].faLabel
-          : statusObj[props.item.status].label}
+        {
+          STATUS_ARR.find((i) => i.name === props.item.status)[
+            LANG_OBJ[uiSlice.language]
+          ]
+        }
       </div>
     </div>
   );

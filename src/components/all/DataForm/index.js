@@ -5,6 +5,7 @@ import { dataActions } from "../../../store/dataSlice";
 import Modal from "../../Modal";
 import { DatePicker } from "zaman";
 import styles from "./index.module.css";
+import { LANG_OBJ, STATUS_ARR } from "../../../util/labels";
 
 const DataForm = () => {
   const dataSlice = useSelector((state) => state.data);
@@ -58,17 +59,15 @@ const DataForm = () => {
   const closeHandler = () => {
     dispatch(dataActions.clearEditId());
   };
+
+  const labelClass = `${styles["form-label"]} ${
+    uiSlice.language === "Fa" ? styles["form-label-fa"] : {}
+  }`;
+
   return (
     <Modal>
       <form className={styles.form} onSubmit={submitHandler}>
-        {uiSlice.language === "En" && (
-          <input
-            type="datetime-local"
-            value={selectedDate}
-            onChange={dateChangeHandler}
-          />
-        )}
-        {uiSlice.language === "Fa" && (
+        {uiSlice.language === "Fa" ? (
           <div className={styles["form-row"]}>
             <div className={styles["form-datePicker"]}>
               <DatePicker
@@ -84,9 +83,28 @@ const DataForm = () => {
               />
             </div>
           </div>
+        ) : (
+          <input
+            type="datetime-local"
+            value={selectedDate}
+            onChange={dateChangeHandler}
+          />
         )}
         <div className={styles["form-status"]}>
-          <label htmlFor="in" className={styles["form-label"]}>
+          {STATUS_ARR.map((status, i) => (
+            <label htmlFor={status.name} key={i} className={labelClass}>
+              <input
+                type="radio"
+                value={status.name}
+                id={status.name}
+                name="status"
+                checked={selectedStatus === status.name}
+                onChange={statusHandler}
+              />
+              <span>{status[LANG_OBJ[uiSlice.language]]}</span>
+            </label>
+          ))}
+          {/* <label htmlFor="in" className={styles["form-label"]}>
             <input
               type="radio"
               value="in"
@@ -118,7 +136,7 @@ const DataForm = () => {
               onChange={statusHandler}
             />
             <span>leave</span>
-          </label>
+          </label> */}
         </div>
 
         <div className={styles["form-actions"]}>

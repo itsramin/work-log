@@ -1,5 +1,5 @@
 import FAB from "../components/FAB";
-import Weekly from "../components/weekly/Weekly";
+import Weekly from "../components/weekly";
 
 const WeeklyScreen = () => {
   return (

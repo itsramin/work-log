@@ -17,6 +17,7 @@ import { uiActions } from "../../store/uiSlice";
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LANG_ARR, LANG_OBJ } from "../../util/labels";
 
 const Language = () => {
   const uiSlice = useSelector((state) => state.ui);
@@ -37,11 +38,6 @@ const Language = () => {
     setOpenLanguage(false);
   };
 
-  const langArr = [
-    { name: "Fa", label: "Persian", faLabel: "فارسی" },
-    { name: "En", label: "English", faLabel: "انگلیسی" },
-  ];
-  const langObj = { Fa: "faLabel", En: "label" };
   return (
     <ListItem disablePadding>
       <ListItemButton component="label" onClick={handleOpenLanguage}>
@@ -54,6 +50,7 @@ const Language = () => {
         disableEscapeKeyDown
         open={openLanguage}
         onClose={handleCloseLanguage}
+        maxWidth={"lg"}
       >
         <DialogTitle>Select Language</DialogTitle>
         <DialogContent>
@@ -63,16 +60,17 @@ const Language = () => {
               display: "flex",
               flexWrap: "wrap",
               flexDirection: "column",
+              width: "250px",
             }}
           >
-            {langArr.map((lng, i) => (
+            {LANG_ARR.map((lng, i) => (
               <Box key={i} onClick={() => setSelectedLng(lng.name)}>
                 <Radio
                   checked={lng.name === selectedLng}
                   value={lng.name}
                   name="radio-buttons"
                 />
-                {lng[langObj[uiSlice.language]]}
+                {lng[LANG_OBJ[uiSlice.language]]}
               </Box>
             ))}
           </Box>
