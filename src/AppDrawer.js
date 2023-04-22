@@ -24,7 +24,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 import { useSelector } from "react-redux";
 
 const windowWidth = window.innerWidth;
-const drawerWidth = windowWidth > 600 ? 240 : 200;
+const drawerWidth = windowWidth > 900 ? 240 : 200;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -34,15 +34,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -(
-      drawerWidth - (windowWidth > 600 ? (windowWidth - 600) / 2 : 0)
-    ),
+    marginLeft: -200,
     ...(open && {
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: (window.innerWidth - 600 - drawerWidth) / 2,
+      marginLeft: -200,
     }),
   })
 );
@@ -112,7 +110,8 @@ const AppDrawer = () => {
     },
   ];
   const [selectedTab, setSelectedTab] = useState(0);
-  return (
+
+  let screen = (
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -179,6 +178,62 @@ const AppDrawer = () => {
       </Main>
     </Box>
   );
+
+  if (windowWidth > 700) {
+    screen = (
+      <Box sx={{ display: "flex" }}>
+        <AppBar
+          position="fixed"
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        >
+          <Toolbar>
+            <Typography variant="h6" noWrap component="div">
+              Work log
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+        >
+          <Toolbar />
+          <Box sx={{ overflow: "auto" }}>
+            <List>
+              {tabsArr.map((tab, index) => (
+                <ListItem key={index} disablePadding>
+                  <ListItemButton
+                    onClick={() => handlerSelect(index)}
+                    selected={selectedTab === index}
+                  >
+                    <ListItemIcon>{tab.icon}</ListItemIcon>
+                    <ListItemText
+                      primary={
+                        <Typography style={{ fontFamily: "Vazirmatn" }}>
+                          {uiSlice.language === "Fa" ? tab.faName : tab.name}
+                        </Typography>
+                      }
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Toolbar />
+          {tabsArr[selectedTab].component}
+        </Box>
+      </Box>
+    );
+  }
+  return screen;
 };
 
 export default AppDrawer;
