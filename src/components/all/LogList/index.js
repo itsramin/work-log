@@ -1,7 +1,6 @@
 import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { dataActions } from "../../../store/dataSlice";
+import { useSelector } from "react-redux";
 import DataItem from "../DataItem";
 import FilterLogs from "../FilterLogs";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -9,13 +8,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import styles from "./index.module.css";
 import { HEADER_ARR, LANG_OBJ } from "../../../util/labels";
 
+import DataForm from "../DataForm";
+import DeleteModal from "../DeleteModal";
+
 const LogList = () => {
   const dataSlice = useSelector((state) => state.data);
   const uiSlice = useSelector((state) => state.ui);
-  const dispatch = useDispatch();
 
   const [loadedLogs, setLoadedLogs] = useState([]);
   const [selectList, setSelectedList] = useState([]);
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
   const checkHandler = (newId) => {
     if (selectList.includes(newId)) {
@@ -24,13 +27,6 @@ const LogList = () => {
       setSelectedList((prev) => [...prev, newId]);
     }
   };
-  const deleteHandler = () => {
-    dispatch(dataActions.setDeleteIds(selectList));
-  };
-  const editHandler = () => {
-    dispatch(dataActions.setEditId({ id: selectList[0] }));
-  };
-
   const checkAllHandler = () => {
     const allIds = loadedLogs.map((log) => log.id);
     if (selectList.length === allIds.length) {
@@ -38,6 +34,18 @@ const LogList = () => {
     } else {
       setSelectedList(allIds);
     }
+  };
+  const handleCloseEdit = () => {
+    setEditIsOpen(false);
+  };
+  const handleOpenEdit = () => {
+    setEditIsOpen(true);
+  };
+  const handleCloseDelete = () => {
+    setDeleteIsOpen(false);
+  };
+  const handleOpenDelete = () => {
+    setDeleteIsOpen(true);
   };
 
   useEffect(() => {
@@ -101,7 +109,7 @@ const LogList = () => {
           <>
             <div className={styles["list-actions"]}>
               <IconButton
-                onClick={deleteHandler}
+                onClick={handleOpenDelete}
                 aria-label="delete"
                 size="small"
               >
@@ -110,8 +118,8 @@ const LogList = () => {
 
               {selectList.length === 1 && (
                 <IconButton
-                  onClick={editHandler}
-                  aria-label="delete"
+                  onClick={handleOpenEdit}
+                  aria-label="edit"
                   size="small"
                 >
                   <EditIcon fontSize="inherit" />
@@ -132,6 +140,20 @@ const LogList = () => {
           />
         ))}
       </div>
+      {editIsOpen && (
+        <DataForm
+          target={dataSlice.list.find((i) => i.id === selectList[0])}
+          isOpen={editIsOpen}
+          onClose={handleCloseEdit}
+        />
+      )}
+      {deleteIsOpen && (
+        <DeleteModal
+          isOpen={deleteIsOpen}
+          onClose={handleCloseDelete}
+          ids={selectList}
+        />
+      )}
     </div>
   );
 };

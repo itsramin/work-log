@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   list: [],
-  editId: null,
-  deleteIds: null,
   date1Filter: null,
   date2Filter: null,
   statusFilter: null,
@@ -21,33 +19,18 @@ const dataSlice = createSlice({
       state.list = state.list.filter(
         (item) => !action.payload.includes(item.id)
       );
-      state.deleteIds = null;
     },
     edit(state, action) {
       const index = state.list.findIndex(
         (item) => item.id === action.payload.id
       );
       state.list[index] = action.payload;
-      state.editId = null;
     },
     import(state, action) {
       state.list = [...state.list, ...action.payload];
     },
     deleteAll(state) {
       state.list = [];
-    },
-
-    setEditId(state, action) {
-      state.editId = action.payload.id;
-    },
-    clearEditId(state) {
-      state.editId = null;
-    },
-    setDeleteIds(state, action) {
-      state.deleteIds = action.payload;
-    },
-    clearDeleteIds(state) {
-      state.deleteIds = null;
     },
     setDate1Filter(state, action) {
       state.date1Filter = action.payload;

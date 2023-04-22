@@ -1,28 +1,45 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Button, Stack } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { dataActions } from "../../../store/dataSlice";
-import Modal from "../../Modal";
+import MyDialog from "../../MyDialog";
+
 import styles from "./index.module.css";
 
-const DeleteModal = () => {
+const DeleteModal = ({ isOpen, onClose, ids }) => {
   const dispatch = useDispatch();
-  const dataSlice = useSelector((state) => state.data);
-  const yesHandler = () => {
-    dispatch(dataActions.delete(dataSlice.deleteIds));
-  };
-  const noHandler = () => {
-    dispatch(dataActions.clearDeleteIds());
+
+  const submitHandler = () => {
+    dispatch(dataActions.delete(ids));
+    onClose();
   };
 
+  const content = (
+    <div className={styles["delete-title"]}>
+      Are you sure to delete this log?
+    </div>
+  );
+
+  const actions = (
+    <Stack spacing={2} direction="row">
+      <Button variant="text" onClick={onClose}>
+        Cancel
+      </Button>
+      <Button variant="contained" onClick={submitHandler} color="error">
+        Yes
+      </Button>
+    </Stack>
+  );
+
   return (
-    <Modal>
-      <div className={styles["delete-title"]}>Are you sure to delete?</div>
-      <div className={styles["delete-actions"]}>
-        <div onClick={noHandler}>No</div>
-        <div className={styles["delete-yes"]} onClick={yesHandler}>
-          Yes
-        </div>
-      </div>
-    </Modal>
+    <>
+      <MyDialog
+        isOpen={isOpen}
+        onClose={onClose}
+        title="Delete"
+        children={content}
+        actions={actions}
+      />
+    </>
   );
 };
 

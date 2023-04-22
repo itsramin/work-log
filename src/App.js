@@ -1,7 +1,4 @@
-import { useSelector } from "react-redux";
 import "./App.css";
-import DataForm from "./components/all/DataForm";
-import DeleteModal from "./components/all/DeleteModal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "@fontsource/roboto/300.css";
@@ -12,8 +9,6 @@ import "@fontsource/roboto/700.css";
 import AppDrawer from "./AppDrawer";
 
 function App() {
-  const dataSlice = useSelector((state) => state.data);
-
   return (
     <div className="App">
       <ToastContainer
@@ -28,8 +23,6 @@ function App() {
         pauseOnHover
         theme="light"
       />
-      {dataSlice.editId && <DataForm />}
-      {dataSlice.deleteIds && <DeleteModal />}
       <AppDrawer />
     </div>
   );
