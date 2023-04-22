@@ -96,7 +96,9 @@ const LogList = () => {
         <input
           type="checkbox"
           onChange={checkAllHandler}
-          checked={selectList.length === loadedLogs.length}
+          checked={
+            selectList.length === loadedLogs.length && selectList.length !== 0
+          }
         />
         {selectList.length === 0 && (
           <>
