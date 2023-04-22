@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { MdCheck, MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { dataActions } from "../../../store/dataSlice";
 import Modal from "../../Modal";
 import { DatePicker } from "zaman";
 import styles from "./index.module.css";
 import { LANG_OBJ, STATUS_ARR } from "../../../util/labels";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 const DataForm = () => {
   const dataSlice = useSelector((state) => state.data);
@@ -104,49 +105,16 @@ const DataForm = () => {
               <span>{status[LANG_OBJ[uiSlice.language]]}</span>
             </label>
           ))}
-          {/* <label htmlFor="in" className={styles["form-label"]}>
-            <input
-              type="radio"
-              value="in"
-              id="in"
-              name="status"
-              checked={selectedStatus === "in"}
-              onChange={statusHandler}
-            />
-            <span>in</span>
-          </label>
-          <label htmlFor="out" className={styles["form-label"]}>
-            <input
-              type="radio"
-              value="out"
-              id="out"
-              name="status"
-              checked={selectedStatus === "out"}
-              onChange={statusHandler}
-            />
-            <span>out</span>
-          </label>
-          <label htmlFor="leave" className={styles["form-label"]}>
-            <input
-              type="radio"
-              value="leave"
-              id="leave"
-              name="status"
-              checked={selectedStatus === "leave"}
-              onChange={statusHandler}
-            />
-            <span>leave</span>
-          </label> */}
         </div>
 
-        <div className={styles["form-actions"]}>
-          <div className={styles["form-cancel-icon"]} onClick={closeHandler}>
-            <MdClose />
-          </div>
-          <div className={styles["form-check-icon"]} onClick={submitHandler}>
-            <MdCheck />
-          </div>
-        </div>
+        <Stack spacing={2} direction="row">
+          <Button variant="text" onClick={closeHandler}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={submitHandler}>
+            Save
+          </Button>
+        </Stack>
       </form>
     </Modal>
   );
