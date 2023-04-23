@@ -91,7 +91,7 @@ const TodaySummary = () => {
   };
 
   return (
-    <Paper elevation={2} sx={{ maxWidth: 300, marginBottom: 4 }}>
+    <Paper elevation={2} sx={{ maxWidth: 300 }}>
       <Box padding={2}>
         <Stack spacing={2}>
           <Stack direction="row" justifyContent="space-between">

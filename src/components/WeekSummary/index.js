@@ -124,7 +124,7 @@ const WeekSummary = () => {
   const date_text = { color: "#c4c4c4", fontFamily: "VazirMatn" };
 
   return (
-    <Paper elevation={2} sx={{ maxWidth: 300, marginBottom: 4 }}>
+    <Paper elevation={2} sx={{ maxWidth: 300 }}>
       <Box padding={2}>
         <Stack spacing={2}>
           <Stack direction="row" justifyContent="space-between">
