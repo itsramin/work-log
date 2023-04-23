@@ -27,7 +27,7 @@ function App() {
       dispatch(dataActions.setLastDate(today));
       dispatch(dataActions.setLastStatus(null));
     }
-  }, []);
+  }, [lastDate, today, dispatch]);
   return (
     <div className="App">
       <ToastContainer

@@ -70,14 +70,18 @@ const TodaySummary = () => {
 
   const last_status = STATUS_ARR.find(
     (stat) => stat.name === dataSlice.lastStatus
-  )[LANG_OBJ[language]];
+  );
+
+  const last_exist_status = last_status
+    ? last_status[LANG_OBJ[language]]
+    : null;
   const today_sum_work = calcWorkTimeArr(rows);
 
   // styles
 
   const fa_text = { fontFamily: "VazirMatn" };
   const date_text = { color: "#c4c4c4", fontFamily: "VazirMatn" };
-  const last_status_style = {
+  const last_status_style = last_status && {
     backgroundColor: STATUS_ARR.find(
       (stat) => stat.name === dataSlice.lastStatus
     ).bgColor,
@@ -99,9 +103,11 @@ const TodaySummary = () => {
                 {todayLabel}
               </Typography>
             </Stack>
-            <Box sx={last_status_style}>
-              <Typography sx={fa_text}>{last_status}</Typography>
-            </Box>
+            {last_status && (
+              <Box sx={last_status_style}>
+                <Typography sx={fa_text}>{last_exist_status}</Typography>
+              </Box>
+            )}
           </Stack>
           <TableContainer>
             <Table
