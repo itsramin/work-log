@@ -93,10 +93,10 @@ const Weekly = () => {
   }, [weekArr]);
 
   const workTimeClass = `${styles.weekCol} ${
-    uiSlice.language === "Fa" && styles["fa-number"]
+    uiSlice.language === "Fa" && "fa-number"
   }`;
   const workSumClass = `${styles.weekSum} ${
-    uiSlice.language === "Fa" && styles["fa-number"]
+    uiSlice.language === "Fa" && "fa-number"
   }`;
 
   return (

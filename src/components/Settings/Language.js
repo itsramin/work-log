@@ -64,7 +64,11 @@ const Language = () => {
             }}
           >
             {LANG_ARR.map((lng, i) => (
-              <Box key={i} onClick={() => setSelectedLng(lng.name)}>
+              <Box
+                sx={{ cursor: "pointer" }}
+                key={i}
+                onClick={() => setSelectedLng(lng.name)}
+              >
                 <Radio
                   checked={lng.name === selectedLng}
                   value={lng.name}

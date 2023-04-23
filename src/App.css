@@ -18,6 +18,9 @@ input[type="time"] {
     "Droid Sans", "Helvetica Neue", sans-serif;
   font-feature-settings: "ss01";
 }
+.fa-number {
+  font-feature-settings: "ss01";
+}
 
 /* zaman package  */
 .css-7qlbje {

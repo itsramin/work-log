@@ -16,6 +16,7 @@ const styles = {
 const FAB = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const uiSlice = useSelector((state) => state.ui);
+  const dataSlice = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const handleFabClick = () => {
     setMenuOpen(!menuOpen);
@@ -38,7 +39,7 @@ const FAB = () => {
       <Fab style={styles.fab} color="primary" onClick={handleFabClick}>
         <MdAdd size={25} />
       </Fab>
-
+      {/* .filter((s) => dataSlice.lastStatus !== s.name) */}
       {menuOpen &&
         STATUS_ARR.map((item, i) => (
           <Fab
@@ -47,6 +48,10 @@ const FAB = () => {
             onClick={() => handleMenuItemClick(item.name)}
             variant="extended"
             key={i}
+            disabled={
+              dataSlice.lastStatus === item.name &&
+              dataSlice.lastStatus !== "leave"
+            }
           >
             {item[LANG_OBJ[uiSlice.language]]}
           </Fab>

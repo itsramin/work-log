@@ -40,3 +40,12 @@ export const calcWorkTime = (minTime) => {
 
   return `${resHour}:${resMin}`;
 };
+
+export const calcWorkTimeArr = (arr) => {
+  const timsArr = arr.filter((item) => item.work).map((item) => item.work);
+  const mins = timsArr.reduce((sum, cur) => sum + +cur.slice(3, 5), 0);
+  const hoursInMin =
+    timsArr.reduce((sum, cur) => sum + +cur.slice(0, 2), 0) * 60;
+
+  return calcWorkTime(mins + hoursInMin);
+};

@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   list: [],
+  lastDate: null,
+  lastStatus: null,
   date1Filter: null,
   date2Filter: null,
   statusFilter: null,
@@ -14,6 +16,7 @@ const dataSlice = createSlice({
   reducers: {
     add(state, action) {
       state.list.unshift(action.payload);
+      state.lastStatus = action.payload.status;
     },
     delete(state, action) {
       state.list = state.list.filter(
@@ -55,6 +58,13 @@ const dataSlice = createSlice({
     },
     clearSort(state) {
       state.sort = null;
+    },
+    setLastStatus(state, action) {
+      state.lastStatus = action.payload;
+    },
+
+    setLastDate(state, action) {
+      state.lastDate = action.payload;
     },
   },
 });
