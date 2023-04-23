@@ -36,7 +36,13 @@ export const HEADER_ARR = [
 ];
 export const SUMMARY_ARR = [
   { name: "today", label: "Today Summary", faLabel: "آمار امروز" },
-  { name: "date", label: "Date", faLabel: "تاریخ" },
+  { name: "week", label: "This Week Summary", faLabel: "آمار این هفته" },
   { name: "time", label: "Time", faLabel: "ساعت" },
   { name: "status", label: "Status", faLabel: "وضعیت" },
+];
+
+export const WEEK_HEADER_ARR = [
+  { name: "day", label: "Day", faLabel: "روز" },
+  { name: "date", label: "Date", faLabel: "تاریخ" },
+  { name: "work", label: "Work", faLabel: "ساعت" },
 ];

@@ -16,7 +16,7 @@ const styles = {
 const FAB = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const uiSlice = useSelector((state) => state.ui);
-  const dataSlice = useSelector((state) => state.data);
+  // const dataSlice = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const handleFabClick = () => {
     setMenuOpen(!menuOpen);
