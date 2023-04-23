@@ -48,10 +48,10 @@ const FAB = () => {
             onClick={() => handleMenuItemClick(item.name)}
             variant="extended"
             key={i}
-            disabled={
-              dataSlice.lastStatus === item.name &&
-              dataSlice.lastStatus !== "leave"
-            }
+            // disabled={
+            //   dataSlice.lastStatus === item.name &&
+            //   dataSlice.lastStatus !== "leave"
+            // }
           >
             {item[LANG_OBJ[uiSlice.language]]}
           </Fab>
