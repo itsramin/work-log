@@ -36,5 +36,5 @@ input[type="time"] {
   z-index: 2000;
 }
 .css-1e0sis0 {
-  z-index: 1400;
+  z-index: 1400 !important;
 }
