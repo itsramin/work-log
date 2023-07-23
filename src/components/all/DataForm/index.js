@@ -47,7 +47,7 @@ const DataForm = ({ target, isOpen, onClose }) => {
     setSelectedDate(event.target.value);
   };
   const dateFaChangeHandler = (event) => {
-    setSelectedDate(event.value);
+    setSelectedDate(event.value.toISOString());
   };
   const timeFaChangeHandler = (event) => {
     setSelectedTime(event.target.value);
